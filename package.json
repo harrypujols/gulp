@@ -1,7 +1,7 @@
 {
   "name": "gulp",
   "version": "0.0.1",
-  "description": "Gulp Recipe",
+  "description": "Gulp recipe",
   "devDependencies": {
     "gulp-concat": "~2.1.7",
     "gulp-util": "~2.2.12",
