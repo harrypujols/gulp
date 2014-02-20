@@ -1,0 +1,13 @@
+@import "normalize";
+body {
+	background: grey;
+}
+
+h1 {
+	color: pink;
+	text-align: center;
+}
+
+@import "sprite/*.png";
+$sprite-sprite-dimensions: true;
+@include all-sprite-sprites;

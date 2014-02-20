@@ -1,4 +1,13 @@
-gulp
-====
+HARRY'S GULP BOILERPLATE
+========================
 
-My personal Gulp boilerplate
+## Initial Setup
+
+- `$ cd <path/to/this/folder>/gulp`
+- `$ bower install`
+- `$ npm install`
+
+## Run Dev
+
+- `$ gulp`
+- http://localhost:4000
