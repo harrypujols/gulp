@@ -401,111 +401,12 @@ h1 {
   text-align: center;
 }
 
-.sprite-sprite, .sprite-calendar, .sprite-compat, .sprite-echalk-logo, .sprite-emblem, .sprite-facebook, .sprite-login, .sprite-newindicator, .sprite-paperclip, .sprite-quicklink1, .sprite-quicklink2, .sprite-quicklink3, .sprite-quicklink4, .sprite-quicklink5, .sprite-quicklink6, .sprite-twitter, .sprite-urgenticon {
-  background: url('../img/sprite-sdc09f2ddd6.png') no-repeat;
+.sprite-sprite, .sprite-jobs {
+  background: url('../img/sprite-s21cebb7d28.png') no-repeat;
 }
 
-.sprite-calendar {
-  background-position: 0 -508px;
-  height: 24px;
-  width: 24px;
-}
-.sprite-calendar:hover, .sprite-calendar.calendar_hover, .sprite-calendar.calendar-hover {
-  background-position: 0 -462px;
-}
-
-.sprite-compat {
-  background-position: 0 -560px;
-  height: 18px;
-  width: 14px;
-}
-
-.sprite-echalk-logo {
-  background-position: 0 -252px;
-  height: 37px;
-  width: 82px;
-}
-
-.sprite-emblem {
+.sprite-jobs {
   background-position: 0 0;
-  height: 87px;
-  width: 88px;
-}
-
-.sprite-facebook {
-  background-position: 0 -430px;
-  height: 32px;
-  width: 32px;
-}
-.sprite-facebook:hover, .sprite-facebook.facebook_hover, .sprite-facebook.facebook-hover {
-  background-position: 0 -398px;
-}
-
-.sprite-login {
-  background-position: 0 -486px;
-  height: 22px;
-  width: 22px;
-}
-
-.sprite-newindicator {
-  background-position: 0 -386px;
-  height: 12px;
-  width: 27px;
-}
-
-.sprite-paperclip {
-  background-position: 0 -548px;
-  height: 12px;
-  width: 12px;
-}
-
-.sprite-quicklink1 {
-  background-position: 0 -87px;
-  height: 33px;
-  width: 33px;
-}
-
-.sprite-quicklink2 {
-  background-position: 0 -219px;
-  height: 33px;
-  width: 33px;
-}
-
-.sprite-quicklink3 {
-  background-position: 0 -153px;
-  height: 33px;
-  width: 33px;
-}
-
-.sprite-quicklink4 {
-  background-position: 0 -186px;
-  height: 33px;
-  width: 33px;
-}
-
-.sprite-quicklink5 {
-  background-position: 0 -289px;
-  height: 33px;
-  width: 33px;
-}
-
-.sprite-quicklink6 {
-  background-position: 0 -120px;
-  height: 33px;
-  width: 33px;
-}
-
-.sprite-twitter {
-  background-position: 0 -354px;
-  height: 32px;
-  width: 32px;
-}
-.sprite-twitter:hover, .sprite-twitter.twitter_hover, .sprite-twitter.twitter-hover {
-  background-position: 0 -322px;
-}
-
-.sprite-urgenticon {
-  background-position: 0 -532px;
-  height: 16px;
-  width: 16px;
+  height: 178px;
+  width: 100px;
 }

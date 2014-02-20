@@ -3,7 +3,7 @@ HARRY'S GULP BOILERPLATE
 
 ## Initial Setup
 
-- `$ cd <path/to/this/folder>/gulp`
+- `$ cd </path/to/this/folder>/gulp`
 - `$ bower install`
 - `$ npm install`
 
