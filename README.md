@@ -2,7 +2,7 @@ HARRY'S GULP BOILERPLATE
 ========================
 
 ## Installation
-- Install [Node.js](http://nodejs.org)
+- Install [node.js](http://nodejs.org)
 - `$ npm install -g gulp`
 
 ## Initial Setup
@@ -14,4 +14,3 @@ HARRY'S GULP BOILERPLATE
 ## Run Dev
 
 - `$ gulp`
-- http://localhost:4000
