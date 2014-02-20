@@ -93,6 +93,6 @@ gulp.task('ftp', function () {
         .pipe(ftp({
             host: 'ftp.harrypujols.com',
             user: 'server@harrypujols.com',
-            pass: '1X$r%e=d&%{A'
+            pass: '**********'
         }));
 });
