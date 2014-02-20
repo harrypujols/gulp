@@ -14,6 +14,7 @@ var gulp        = require('gulp'),
     marked      = require('marked'), // For :markdown filter in jade
     path        = require('path'),
     server      = tinylr(),
+    notify      = require("gulp-notify"),
     ftp         = require('gulp-ftp');
  
 // --- Compass ---
@@ -26,6 +27,7 @@ gulp.task('compass', function() {
             image: './build/img'
         }))
         .pipe(gulp.dest('./build/css'))
+        .pipe(notify('Compass compile successful'))
         .pipe( livereload( server ));
 });
 
@@ -41,6 +43,7 @@ gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe( gulp.dest('./build/js'))
+    .pipe(notify('Coffeescript compile successful'))
     .pipe( livereload( server ));
 });
 
@@ -60,6 +63,7 @@ gulp.task('templates', function() {
       pretty: true
     }))
     .pipe(gulp.dest('./build'))
+    .pipe(notify('Jade compile successful'))
     .pipe( livereload( server ));
 });
 

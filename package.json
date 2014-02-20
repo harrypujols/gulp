@@ -19,6 +19,7 @@
     "gulp-ftp": "~0.1.1",
     "gulp-coffee": "~1.4.1",
     "gulp-rename": "~1.1.0",
-    "gulp-flatten": "0.0.2"
+    "gulp-flatten": "0.0.2",
+    "gulp-notify": "~1.0.0-beta"
   }
 }
