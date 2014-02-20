@@ -1,4 +1,5 @@
 var gulp        = require('gulp'),
+    open        = require("gulp-open"),
     gutil       = require('gulp-util'),
     compass     = require('gulp-compass'),
     uglify      = require('gulp-uglify'),
@@ -7,14 +8,14 @@ var gulp        = require('gulp'),
     concat      = require('gulp-concat'),
     rename      = require("gulp-rename"),
     flatten     = require('gulp-flatten'),
+    marked      = require('marked'), // For :markdown filter in jade
+    path        = require('path'),
+    notify      = require("gulp-notify"),
     livereload  = require('gulp-livereload'),
     tinylr      = require('tiny-lr'),
     express     = require('express'),
     app         = express(),
-    marked      = require('marked'), // For :markdown filter in jade
-    path        = require('path'),
     server      = tinylr(),
-    notify      = require("gulp-notify"),
     ftp         = require('gulp-ftp');
  
 // --- Compass ---
@@ -28,7 +29,7 @@ gulp.task('compass', function() {
         }))
         .pipe(gulp.dest('./build/css'))
         .pipe(notify('Compass compile successful'))
-        .pipe( livereload( server ));
+        .pipe(livereload(server));
 });
 
 // --- Normalize ---
@@ -44,7 +45,7 @@ gulp.task('js', function() {
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe( gulp.dest('./build/js'))
     .pipe(notify('Coffeescript compile successful'))
-    .pipe( livereload( server ));
+    .pipe(livereload(server));
 });
 
 // --- Vendor ---
@@ -64,7 +65,7 @@ gulp.task('templates', function() {
     }))
     .pipe(gulp.dest('./build'))
     .pipe(notify('Jade compile successful'))
-    .pipe( livereload( server ));
+    .pipe(livereload(server));
 });
 
 // --- Server --- 
@@ -73,6 +74,12 @@ gulp.task('express', function() {
   app.use(express.static(path.resolve('./build')));
   app.listen(4000);
   gutil.log('Listening on localhost:4000');
+});
+
+// --- Open ---
+gulp.task('open', function(){
+  return gulp.src('./build/index.html')
+      .pipe(open('', {url:'http://localhost:4000'}));
 });
 
 // --- Watch --- 
@@ -88,7 +95,7 @@ gulp.task('watch', function () {
 });
  
 // --- Default task --- 
-gulp.task('default', ['js','vendor','rename','compass','templates','express','watch']);
+gulp.task('default', ['js','vendor','rename','compass','templates','express','watch', 'open']);
 
 // ftp, doesn't work for some reason.
 // https://github.com/sindresorhus/gulp-ftp
