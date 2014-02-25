@@ -21,6 +21,7 @@
     "gulp-rename": "~1.1.0",
     "gulp-flatten": "0.0.2",
     "gulp-notify": "~1.0.0-beta",
-    "gulp-open": "~0.2.8"
+    "gulp-open": "~0.2.8",
+    "gulp-if": "0.0.5"
   }
 }

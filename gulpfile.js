@@ -16,6 +16,8 @@ var gulp        = require('gulp'),
     express     = require('express'),
     app         = express(),
     server      = tinylr(),
+    _if         = require('gulp-if'),
+    isWindows   = /^win/.test(require('os').platform()),
     ftp         = require('gulp-ftp');
  
 // --- Compass ---
@@ -28,7 +30,7 @@ gulp.task('compass', function() {
             image: './build/img'
         }))
         .pipe(gulp.dest('./build/css'))
-        .pipe(notify('Compass compile successful'))
+        .pipe(_if(!isWindows, notify('Compass compile successful')))
         .pipe(livereload(server));
 });
 
@@ -44,7 +46,7 @@ gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe( gulp.dest('./build/js'))
-    .pipe(notify('Coffeescript compile successful'))
+    .pipe(_if(!isWindows, notify('Coffeescript compile successful')))
     .pipe(livereload(server));
 });
 
@@ -64,7 +66,7 @@ gulp.task('templates', function() {
       pretty: true
     }))
     .pipe(gulp.dest('./build'))
-    .pipe(notify('Jade compile successful'))
+    .pipe(_if(!isWindows, notify('Jade compile successful')))
     .pipe(livereload(server));
 });
 
