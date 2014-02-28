@@ -17,8 +17,7 @@ var gulp        = require('gulp'),
     app         = express(),
     server      = tinylr(),
     _if         = require('gulp-if'),
-    isWindows   = /^win/.test(require('os').platform()),
-    ftp         = require('gulp-ftp');
+    isWindows   = /^win/.test(require('os').platform());
  
 // --- Compass ---
 gulp.task('compass', function() {
@@ -30,8 +29,8 @@ gulp.task('compass', function() {
             image: './build/img'
         }))
         .pipe(gulp.dest('./build/css'))
-        .pipe(_if(!isWindows, notify('Compass compile successful')))
-        .pipe(livereload(server));
+        .pipe(livereload(server))
+        .pipe(_if(!isWindows, notify('Compass compile successful')));
 });
 
 // --- Normalize ---
@@ -46,8 +45,8 @@ gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe( gulp.dest('./build/js'))
-    .pipe(_if(!isWindows, notify('Coffeescript compile successful')))
-    .pipe(livereload(server));
+    .pipe(livereload(server))
+    .pipe(_if(!isWindows, notify('Coffeescript compile successful')));
 });
 
 // --- Vendor ---
@@ -66,8 +65,8 @@ gulp.task('templates', function() {
       pretty: true
     }))
     .pipe(gulp.dest('./build'))
-    .pipe(_if(!isWindows, notify('Jade compile successful')))
-    .pipe(livereload(server));
+    .pipe(livereload(server))
+    .pipe(_if(!isWindows, notify('Jade compile successful')));
 });
 
 // --- Server --- 
@@ -98,14 +97,3 @@ gulp.task('watch', function () {
  
 // --- Default task --- 
 gulp.task('default', ['js','vendor','rename','compass','templates','express','watch', 'open']);
-
-// ftp, doesn't work for some reason.
-// https://github.com/sindresorhus/gulp-ftp
-gulp.task('ftp', function () {
-    gulp.src('./build')
-        .pipe(ftp({
-            host: 'ftp.harrypujols.com',
-            user: 'server@harrypujols.com',
-            pass: '**********'
-        }));
-});
