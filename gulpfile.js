@@ -51,7 +51,7 @@ gulp.task('js', function() {
 
 // --- Vendor ---
 gulp.task('vendor', function() {
-  return gulp.src(['bower_components/**/modernizr.js', 'bower_components/**/jquery.js'])
+  return gulp.src('bower_components/**/modernizr.js')
       .pipe(flatten())
       .pipe( uglify() )
       // .pipe( concat('vendor.js'))
