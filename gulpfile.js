@@ -17,7 +17,8 @@ var gulp        = require('gulp'),
     app         = express(),
     server      = tinylr(),
     _if         = require('gulp-if'),
-    isWindows   = /^win/.test(require('os').platform());
+    isWindows   = /^win/.test(require('os').platform()),
+    ftp         = require('gulp-ftp');
  
 // --- Compass ---
 gulp.task('compass', function() {
@@ -29,8 +30,15 @@ gulp.task('compass', function() {
             image: './build/img'
         }))
         .pipe(gulp.dest('./build/css'))
-        .pipe(livereload(server))
-        .pipe(_if(!isWindows, notify('Compass compile successful')));
+        .pipe(_if(!isWindows, notify('Compass compile successful')))
+        .pipe(livereload(server));
+});
+
+// --- Normalize ---
+gulp.task('rename', function() {
+    gulp.src('bower_components/**/normalize.css')
+      .pipe(rename('_normalize.scss'))
+      .pipe(gulp.dest('./dev/styles'));
 });
 
 // --- Scripts ---
@@ -38,8 +46,17 @@ gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe( gulp.dest('./build/js'))
-    .pipe(livereload(server))
-    .pipe(_if(!isWindows, notify('Coffeescript compile successful')));
+    .pipe(_if(!isWindows, notify('Coffeescript compile successful')))
+    .pipe(livereload(server));
+});
+
+// --- Vendor ---
+gulp.task('vendor', function() {
+  return gulp.src(['bower_components/**/modernizr.js', 'bower_components/**/jquery.js'])
+      .pipe(flatten())
+      .pipe( uglify() )
+      // .pipe( concat('vendor.js'))
+      .pipe(gulp.dest('build/js'));
 });
 
 // --- Jade --- 
@@ -49,12 +66,12 @@ gulp.task('templates', function() {
       pretty: true
     }))
     .pipe(gulp.dest('./build'))
-    .pipe(livereload(server))
-    .pipe(_if(!isWindows, notify('Jade compile successful')));
+    .pipe(_if(!isWindows, notify('Jade compile successful')))
+    .pipe(livereload(server));
 });
 
 // --- Server --- 
-gulp.task('server', function() {
+gulp.task('express', function() {
   app.use(require('connect-livereload')());
   app.use(express.static(path.resolve('./build')));
   app.listen(4000);
@@ -80,4 +97,15 @@ gulp.task('watch', function () {
 });
  
 // --- Default task --- 
-gulp.task('default', ['js','compass','templates','server','watch','open']);
+gulp.task('default', ['js','vendor','rename','compass','templates','express','watch', 'open']);
+
+// ftp, doesn't work for some reason.
+// https://github.com/sindresorhus/gulp-ftp
+gulp.task('ftp', function () {
+    gulp.src('./build')
+        .pipe(ftp({
+            host: 'ftp.harrypujols.com',
+            user: 'server@harrypujols.com',
+            pass: '**********'
+        }));
+});
