@@ -70,7 +70,7 @@ gulp.task('templates', function() {
 });
 
 // --- Server --- 
-gulp.task('express', function() {
+gulp.task('server', function() {
   app.use(require('connect-livereload')());
   app.use(express.static(path.resolve('./build')));
   app.listen(4000);
@@ -96,4 +96,4 @@ gulp.task('watch', function () {
 });
  
 // --- Default task --- 
-gulp.task('default', ['js','vendor','rename','compass','templates','express','watch', 'open']);
+gulp.task('default', ['js','vendor','rename','compass','templates','server','watch', 'open']);
