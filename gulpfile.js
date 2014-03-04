@@ -30,7 +30,10 @@ gulp.task('compass', function() {
         }))
         .pipe(gulp.dest('./build/css'))
         .pipe(livereload(server))
-        .pipe(_if(!isWindows, notify('Compass compile successful')));
+        .pipe(_if(!isWindows, notify({
+          title: 'Sucess',
+          message: 'Compass compiled'
+        })));
 });
 
 // --- Normalize ---
@@ -46,7 +49,10 @@ gulp.task('js', function() {
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe( gulp.dest('./build/js'))
     .pipe(livereload(server))
-    .pipe(_if(!isWindows, notify('Coffeescript compile successful')));
+    .pipe(_if(!isWindows, notify({
+      title: 'Sucess',
+      message: 'Coffeescript compiled'
+    })));
 });
 
 // --- Vendor ---
@@ -66,7 +72,10 @@ gulp.task('templates', function() {
     }))
     .pipe(gulp.dest('./build'))
     .pipe(livereload(server))
-    .pipe(_if(!isWindows, notify('Jade compile successful')));
+    .pipe(_if(!isWindows, notify({
+      title: 'Sucess',
+      message: 'Jade compiled'
+    })));
 });
 
 // --- Server --- 

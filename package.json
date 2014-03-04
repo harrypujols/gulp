@@ -8,7 +8,6 @@
     "gulp": "~3.5.0",
     "gulp-uglify": "~0.1.0",
     "gulp-sass": "~0.4.1",
-    "gulp-jade": "~0.3.0",
     "gulp-livereload": "~0.2.0",
     "tiny-lr": "0.0.5",
     "express": "~3.4.8",
@@ -21,6 +20,7 @@
     "gulp-flatten": "0.0.2",
     "gulp-notify": "~1.0.0-beta",
     "gulp-open": "~0.2.8",
-    "gulp-if": "0.0.5"
+    "gulp-if": "0.0.5",
+    "gulp-jade": "~0.4.2"
   }
 }
