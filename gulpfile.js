@@ -10,7 +10,8 @@ var gulp        = require('gulp'),
     flatten     = require('gulp-flatten'),
     marked      = require('marked'), // For :markdown filter in jade
     path        = require('path'),
-    notify      = require("gulp-notify"),
+    plumber     = require('gulp-plumber'),
+    notify      = require('gulp-notify'),
     livereload  = require('gulp-livereload'),
     tinylr      = require('tiny-lr'),
     express     = require('express'),
@@ -22,12 +23,20 @@ var gulp        = require('gulp'),
 // --- Compass ---
 gulp.task('compass', function() {
     gulp.src('./dev/styles/*.scss')
+    	.pipe(plumber())
         .pipe(compass({
             config_file: './config.rb',
             css: './build/css',
             sass: './dev/styles',
             image: './build/img'
         }))
+		.on('error', notify.onError({
+			title: 'Fail',
+			message: 'Compass error'
+		}))
+		.on('error', function (err) {
+			return console.log(err);
+		})
         .pipe(gulp.dest('./build/css'))
         .pipe(livereload(server))
         .pipe(_if(!isWindows, notify({

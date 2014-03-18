@@ -21,6 +21,7 @@
     "gulp-notify": "~1.0.0-beta",
     "gulp-open": "~0.2.8",
     "gulp-if": "0.0.5",
-    "gulp-jade": "~0.4.2"
+    "gulp-jade": "~0.4.2",
+    "gulp-plumber": "~0.5.6"
   }
 }
