@@ -6,19 +6,13 @@ var gulp        = require('gulp'),
     coffee      = require('gulp-coffee'),
     jade        = require('gulp-jade'),
     concat      = require('gulp-concat'),
-    rename      = require("gulp-rename"),
-    flatten     = require('gulp-flatten'),
+    rename      = require('gulp-rename'),
     marked      = require('marked'), // For :markdown filter in jade
-    path        = require('path'),
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
-    livereload  = require('gulp-livereload'),
-    tinylr      = require('tiny-lr'),
-    express     = require('express'),
-    app         = express(),
-    server      = tinylr(),
     _if         = require('gulp-if'),
-    isWindows   = /^win/.test(require('os').platform());
+    isWindows   = /^win/.test(require('os').platform()),
+    browsersync = require('browser-sync');
  
 // --- Compass ---
 gulp.task('compass', function() {
@@ -38,7 +32,6 @@ gulp.task('compass', function() {
 			return console.log(err);
 		})
         .pipe(gulp.dest('./build/css'))
-        .pipe(livereload(server))
         .pipe(_if(!isWindows, notify({
           title: 'Sucess',
           message: 'Compass compiled'
@@ -56,8 +49,7 @@ gulp.task('rename', function() {
 gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
-    .pipe( gulp.dest('./build/js'))
-    .pipe(livereload(server))
+    .pipe(gulp.dest('./build/js'))
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
       message: 'Coffeescript compiled'
@@ -67,7 +59,6 @@ gulp.task('js', function() {
 // --- Vendor ---
 gulp.task('vendor', function() {
   return gulp.src('bower_components/**/modernizr.js')
-      .pipe(flatten())
       .pipe( uglify() )
       // .pipe( concat('vendor.js'))
       .pipe(gulp.dest('build/js'));
@@ -80,38 +71,27 @@ gulp.task('templates', function() {
       pretty: true
     }))
     .pipe(gulp.dest('./build'))
-    .pipe(livereload(server))
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
       message: 'Jade compiled'
     })));
 });
 
-// --- Server --- 
-gulp.task('server', function() {
-  app.use(require('connect-livereload')());
-  app.use(express.static(path.resolve('./build')));
-  app.listen(4000);
-  gutil.log('Listening on localhost:4000');
-});
-
-// --- Open ---
-gulp.task('open', function(){
-  return gulp.src('./build/index.html')
-      .pipe(open('', {url:'http://localhost:4000'}));
-});
-
 // --- Watch --- 
-gulp.task('watch', function () {
-  server.listen(35729, function (err) {
-    if (err) {
-      return console.log(err);
-    }
+gulp.task('watch', function() {
     gulp.watch('./dev/styles/*.scss',['compass']);
     gulp.watch('./dev/scripts/*.coffee',['js']);
     gulp.watch('./dev/*.jade',['templates']);
-  });
+});
+
+// --- Server --- 
+gulp.task('server', function() {  
+    browsersync.init(['./build/*.*', './build/**/*.*'], {
+        server: {
+            baseDir: './build'
+        }
+    });
 });
  
 // --- Default task --- 
-gulp.task('default', ['js','vendor','rename','compass','templates','server','watch', 'open']);
+gulp.task('default', ['js','vendor','rename','compass','templates','watch', 'server']);
