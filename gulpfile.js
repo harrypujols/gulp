@@ -67,9 +67,17 @@ gulp.task('vendor', function() {
 // --- Jade --- 
 gulp.task('templates', function() {
   return gulp.src('./dev/*.jade')
+    .pipe(plumber())
     .pipe(jade({
       pretty: true
     }))
+    .on('error', notify.onError({
+      title: 'Fail',
+      message: 'Jade fucked up'
+    }))
+    .on('error', function (err) {
+      return console.log(err);
+    })
     .pipe(gulp.dest('./build'))
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
