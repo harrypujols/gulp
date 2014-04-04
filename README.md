@@ -1,7 +1,6 @@
 HARRY'S GULP BOILERPLATE
 ========================
-![David says I suck](https://david-dm.org/harrypujols/gulp.png)
-***
+(![David says I suck](https://david-dm.org/harrypujols/gulp.png))[https://david-dm.org/harrypujols/gulp]
 
 ## Installation
 - Install [node.js](http://nodejs.org)
