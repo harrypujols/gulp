@@ -3,7 +3,7 @@ var gulp        = require('gulp'),
     compass     = require('gulp-compass'),
     uglify      = require('gulp-uglify'),
     coffee      = require('gulp-coffee'),
-    jade        = require('gulp-jade'),
+    swig        = require('gulp-swig'),
     rename      = require('gulp-rename'),
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
@@ -53,16 +53,17 @@ gulp.task('js', function() {
     })));
 });
 
-// --- Jade --- 
+// --- Templates --- 
 gulp.task('templates', function() {
-  return gulp.src('./dev/*.jade')
+  gulp.src('./dev/*.html')
     .pipe(plumber())
-    .pipe(jade({
-      pretty: true
+    .pipe(swig({
+      load_json: true,
+      json_path: './dev/data'
     }))
     .on('error', notify.onError({
       title: 'Fail',
-      message: 'Jade fucked up'
+      message: 'Something fucked up'
     }))
     .on('error', function (err) {
       return console.log(err);
@@ -70,7 +71,7 @@ gulp.task('templates', function() {
     .pipe(gulp.dest('./build'))
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
-      message: 'Jade compiled'
+      message: 'Templates compiled'
     })));
 });
 
@@ -78,7 +79,7 @@ gulp.task('templates', function() {
 gulp.task('watch', function() {
     gulp.watch('./dev/styles/*.scss',['compass']);
     gulp.watch('./dev/scripts/*.coffee',['js']);
-    gulp.watch('./dev/*.jade',['templates']);
+    gulp.watch(['./dev/*.html', './dev/**/*.html', './dev/data/*.json'],['templates']);
 });
 
 // --- Server --- 
