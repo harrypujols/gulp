@@ -3,20 +3,16 @@
   "version": "0.0.1",
   "description": "Gulp recipe",
   "devDependencies": {
-    "gulp-concat": "*",
-    "gulp-util": "*",
-    "gulp": "*",
-    "gulp-uglify": "*",
-    "gulp-sass": "*",
-    "marked": "*",
-    "gulp-compass": "*",
-    "coffee-script": "*",
-    "gulp-coffee": "*",
-    "gulp-rename": "*",
-    "gulp-notify": "*",
-    "gulp-if": "*",
-    "gulp-jade": "*",
-    "gulp-plumber": "*",
-    "browser-sync": "*"
+    "gulp": "3.6.0",
+    "gulp-util": "^2.2.14",
+    "gulp-uglify": "^0.2.1",
+    "gulp-compass": "^1.1.8",
+    "gulp-coffee": "^1.4.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-notify": "^1.2.5",
+    "gulp-if": "0.0.5",
+    "gulp-jade": "^0.4.2",
+    "gulp-plumber": "^0.5.6",
+    "browser-sync": "^0.7.4"
   }
 }

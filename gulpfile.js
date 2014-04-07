@@ -1,13 +1,10 @@
 var gulp        = require('gulp'),
-    open        = require("gulp-open"),
     gutil       = require('gulp-util'),
     compass     = require('gulp-compass'),
     uglify      = require('gulp-uglify'),
     coffee      = require('gulp-coffee'),
     jade        = require('gulp-jade'),
-    concat      = require('gulp-concat'),
     rename      = require('gulp-rename'),
-    marked      = require('marked'), // For :markdown filter in jade
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
     _if         = require('gulp-if'),
@@ -56,14 +53,6 @@ gulp.task('js', function() {
     })));
 });
 
-// --- Vendor ---
-gulp.task('vendor', function() {
-  return gulp.src('bower_components/**/modernizr.js')
-      .pipe( uglify() )
-      // .pipe( concat('vendor.js'))
-      .pipe(gulp.dest('build/js'));
-});
-
 // --- Jade --- 
 gulp.task('templates', function() {
   return gulp.src('./dev/*.jade')
@@ -102,4 +91,4 @@ gulp.task('server', function() {
 });
  
 // --- Default task --- 
-gulp.task('default', ['js','vendor','rename','compass','templates','watch', 'server']);
+gulp.task('default', ['js','rename','compass','templates','watch', 'server']);
