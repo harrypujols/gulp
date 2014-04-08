@@ -4,7 +4,8 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     coffee      = require('gulp-coffee'),
     swig        = require('gulp-swig'),
-    rename      = require('gulp-rename'),
+    concat      = require('gulp-concat'),
+    uglify      = require('gulp-uglify'),
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
     _if         = require('gulp-if'),
@@ -35,13 +36,6 @@ gulp.task('compass', function() {
         })));
 });
 
-// --- Normalize ---
-gulp.task('rename', function() {
-    gulp.src('bower_components/**/normalize.css')
-      .pipe(rename('_normalize.scss'))
-      .pipe(gulp.dest('./dev/styles'));
-});
-
 // --- Scripts ---
 gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
@@ -51,6 +45,14 @@ gulp.task('js', function() {
       title: 'Sucess',
       message: 'Coffeescript compiled'
     })));
+});
+
+// --- Vendor ---
+gulp.task('vendor', function() {
+  gulp.src('./dev/scripts/*.js')
+    .pipe(uglify())
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest('./build/js'))
 });
 
 // --- Templates --- 
@@ -92,4 +94,4 @@ gulp.task('server', function() {
 });
  
 // --- Default task --- 
-gulp.task('default', ['js','rename','compass','templates','watch', 'server']);
+gulp.task('default', ['js','vendor','compass','templates','watch','server']);
