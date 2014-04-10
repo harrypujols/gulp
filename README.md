@@ -16,3 +16,16 @@ HARRY'S GULP BOILERPLATE
 ## Run Dev
 
 - `$ gulp`
+
+## Update Packages
+
+I am using [npm-check-updates](https://www.npmjs.org/package/npm-check-updates)
+
+### To Install
+
+- `npm install -g npm-check-updates`
+
+### To Update
+
+- `npm-check-updates -u`
+- `npm install`
