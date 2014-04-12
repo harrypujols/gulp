@@ -402,13 +402,3 @@ h1 {
   color: red;
   text-align: center;
 }
-
-.sprite-sprite, .sprite-jobs {
-  background: url('../img/sprite-s21cebb7d28.png') no-repeat;
-}
-
-.sprite-jobs {
-  background-position: 0 0;
-  height: 178px;
-  width: 100px;
-}

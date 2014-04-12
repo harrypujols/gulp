@@ -10,7 +10,9 @@ var gulp        = require('gulp'),
     notify      = require('gulp-notify'),
     _if         = require('gulp-if'),
     isWindows   = /^win/.test(require('os').platform()),
-    browsersync = require('browser-sync');
+    connect     = require('gulp-connect'),
+    open        = require('gulp-open'),
+    port        = 1337;
  
 // --- Compass ---
 gulp.task('compass', function() {
@@ -30,6 +32,7 @@ gulp.task('compass', function() {
 			return console.log(err);
 		})
         .pipe(gulp.dest('./build/css'))
+        .pipe(connect.reload())
         .pipe(_if(!isWindows, notify({
           title: 'Sucess',
           message: 'Compass compiled'
@@ -41,6 +44,7 @@ gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe(gulp.dest('./build/js'))
+    .pipe(connect.reload())
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
       message: 'Coffeescript compiled'
@@ -53,6 +57,7 @@ gulp.task('vendor', function() {
     .pipe(uglify())
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('./build/js'))
+    .pipe(connect.reload())
 });
 
 // --- Templates --- 
@@ -71,6 +76,7 @@ gulp.task('templates', function() {
       return console.log(err);
     })
     .pipe(gulp.dest('./build'))
+    .pipe(connect.reload())
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
       message: 'Templates compiled'
@@ -84,14 +90,20 @@ gulp.task('watch', function() {
     gulp.watch(['./dev/*.html', './dev/**/*.html', './dev/data/*.json'],['templates']);
 });
 
-// --- Server --- 
-gulp.task('server', function() {  
-    browsersync.init(['./build/*.*', './build/**/*.*'], {
-        server: {
-            baseDir: './build'
-        }
-    });
+// --- Server ---
+gulp.task('server', function() {
+  connect.server({
+    root: './build',
+    port: port,
+    livereload: true
+  });
+});
+
+// --- Open ---
+gulp.task('open', function(){
+  return gulp.src('./build/index.html')
+      .pipe(open('', {url:'http://localhost:' + port, /* app: 'Google Chrome' */}));
 });
  
 // --- Default task --- 
-gulp.task('default', ['js','vendor','compass','templates','watch','server']);
+gulp.task('default', ['js','vendor','compass','templates','watch','server', 'open']);
