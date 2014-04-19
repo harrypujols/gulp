@@ -1,5 +1,6 @@
 {
 	"page": {
+		"id": "home",
 		"name": "Home",
 		"message": "Welcome to Harry's Settings"
 	}
