@@ -27,6 +27,5 @@ I am using [npm-check-updates](https://www.npmjs.org/package/npm-check-updates)
 
 ### To Update
 
-- Install [npm-check-updates](https://www.npmjs.org/package/npm-check-updates)
 - `npm-check-updates -u`
 - `npm install`
