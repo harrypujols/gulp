@@ -1,4 +1,6 @@
 {
-"pagename": "Gulp Template",
-"message": "Welcome to Harry's Settings"
+	"page": {
+		"name": "Home",
+		"message": "Welcome to Harry's Settings"
+	}
 }

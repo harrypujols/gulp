@@ -66,7 +66,8 @@ gulp.task('templates', function() {
     .pipe(plumber())
     .pipe(swig({
       load_json: true,
-      json_path: './dev/data'
+      json_path: './dev/data',
+      data: require('./dev/data/data.json')
     }))
     .on('error', notify.onError({
       title: 'Fail',
