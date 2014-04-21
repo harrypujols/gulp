@@ -104,7 +104,7 @@ gulp.task('server', function() {
 // --- Open ---
 gulp.task('open', function(){
   return gulp.src('./build/index.html')
-      .pipe(open('', {url:'http://localhost:' + port, /* app: 'Google Chrome' */}));
+      .pipe(open('', {url:'http://localhost:' + port/*,  app: 'Google Chrome' */}));
 });
  
 // --- Default task --- 
