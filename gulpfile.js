@@ -36,7 +36,7 @@ gulp.task('compass', function() {
         .pipe(_if(!isWindows, notify({
           title: 'Sucess',
           message: 'Compass compiled'
-        })));
+        })))
 });
 
 // --- Scripts ---
@@ -48,7 +48,7 @@ gulp.task('js', function() {
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
       message: 'Coffeescript compiled'
-    })));
+    })))
 });
 
 // --- Vendor ---
@@ -65,6 +65,7 @@ gulp.task('templates', function() {
   gulp.src('./dev/*.html')
     .pipe(plumber())
     .pipe(swig({
+      defaults: { cache: false },
       load_json: true,
       json_path: './dev/data',
       data: require('./dev/data/data.json')
@@ -81,14 +82,14 @@ gulp.task('templates', function() {
     .pipe(_if(!isWindows, notify({
       title: 'Sucess',
       message: 'Templates compiled'
-    })));
+    })))
 });
 
 // --- Watch --- 
 gulp.task('watch', function() {
+    gulp.watch(['./dev/*.html', './dev/**/*.html', './dev/data/*'],['templates']);
     gulp.watch('./dev/styles/*.scss',['compass']);
     gulp.watch('./dev/scripts/*.coffee',['js']);
-    gulp.watch(['./dev/*.html', './dev/**/*.html', './dev/data/*.json'],['templates']);
 });
 
 // --- Server ---
