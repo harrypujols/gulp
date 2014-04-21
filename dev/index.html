@@ -1,3 +1,4 @@
 {% include "partials/_header.html" %}
     <h1>{{page.message}}</h1>
+    <p class="date">Created on  {{ now()|date('F jS, Y') }}</p>
 {% include "partials/_footer.html" %}

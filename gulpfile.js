@@ -65,7 +65,10 @@ gulp.task('templates', function() {
   gulp.src('./dev/*.html')
     .pipe(plumber())
     .pipe(swig({
-      defaults: { cache: false },
+      defaults: { 
+          cache: false,
+          locals: { now: function () { return new Date(); } }
+      },
       load_json: true,
       json_path: './dev/data',
       data: require('./dev/data/data.json')
