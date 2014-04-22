@@ -1,5 +1,26 @@
-## With this file you are able to:
+A not-so opinionated static site generator.
 
-- Create a new template.
-- Do a Jekyll-style blog system.
-- Have fun!
+## Stuff installed:
+
+- [Gulp.js](http://gulpjs.com) for automation and compiling.
+- [Modernizr](http://modernizr.com) for keeping browsers in check.
+- [Normalize](http://necolas.github.io/normalize.css) to get your styles going without a heavy framework.
+
+## Pre-compiled languages
+
+- [Swig](http://paularmstrong.github.io/swig) as the official templating language.
+- [Sass](http://sass-lang.com) as the official css pre-processing language.
+- [Coffeescript](http://coffeescript.org) for when you need a break from JavaScript.
+
+## Stuff that has to be installed
+
+- [Compass](http://compass-style.org) for sprite building, and other fun stuff with Sass.
+
+## Software used
+
+- [Brackets](http://brackets.io) the official text editor for this repo.
+- [Node.js](http://nodejs.org) because you can't run Gulp.js without it.
+
+## How to use and configure
+
+Coming soon!

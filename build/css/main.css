@@ -394,15 +394,25 @@ th {
   padding: 0;
 }
 
-body {
-  background: white;
+/* Sprites
+   ========================================================================== */
+[class*="sprite-"] {
+  display: inline-block;
+  vertical-align: middle;
 }
 
-h1 {
-  color: red;
-  text-align: center;
+.sprite-sprite, .sprite-lizard {
+  background: url('../img/sprite-s4c38a1564c.png') no-repeat;
 }
 
+.sprite-lizard {
+  background-position: 0 0;
+  height: 229px;
+  width: 231px;
+}
+
+/* User Styles
+   ========================================================================== */
 .container {
   max-width: 780px;
   margin: 0 auto;

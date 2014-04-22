@@ -1,18 +1,20 @@
 @import "normalize";
-body {
-	background: white;
+
+/* Sprites
+   ========================================================================== */
+[class*="sprite-"] {
+	display: inline-block;
+	vertical-align: middle;
 }
 
-h1 {
-	color: red;
-	text-align: center;
-}
+@import "sprite/*.png";
+$sprite-sprite-dimensions: true;
+@include all-sprite-sprites;
+
+/* User Styles
+   ========================================================================== */
 
 .container {
     max-width: 780px;
     margin: 0 auto;
 }
-
-// @import "sprite/*.png";
-// $sprite-sprite-dimensions: true;
-// @include all-sprite-sprites;

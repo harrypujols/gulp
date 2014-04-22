@@ -29,3 +29,7 @@ I am using [npm-check-updates](https://www.npmjs.org/package/npm-check-updates)
 
 - `npm-check-updates -u`
 - `npm install`
+
+### Project's Homepage
+
+http://harrypujols.github.io/gulp

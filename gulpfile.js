@@ -13,7 +13,8 @@ var gulp        = require('gulp'),
     isWindows   = /^win/.test(require('os').platform()),
     connect     = require('gulp-connect'),
     open        = require('gulp-open'),
-    port        = 1337;
+    port        = 1337,
+    deploy      = require('gulp-gh-pages');
  
 // --- Compass ---
 gulp.task('compass', function() {
@@ -92,7 +93,7 @@ gulp.task('templates', function() {
 
 // --- Watch --- 
 gulp.task('watch', function() {
-    gulp.watch(['./dev/*.html', './dev/**/*.html', './dev/data/*'],['templates']);
+    gulp.watch(['./dev/*.html', './dev/**/*.html', './dev/data/*', './dev/partials/*'],['templates']);
     gulp.watch('./dev/styles/*.scss',['compass']);
     gulp.watch('./dev/scripts/*.coffee',['js']);
 });
@@ -110,6 +111,12 @@ gulp.task('server', function() {
 gulp.task('open', function(){
   return gulp.src('./build/index.html')
       .pipe(open('', {url:'http://localhost:' + port/*,  app: 'Google Chrome' */}));
+});
+
+// --- Deploy ---
+gulp.task('deploy', function () {
+    gulp.src('./build/**/*')
+        .pipe(deploy('https://github.com/harrypujols/gulp', 'origin'));
 });
  
 // --- Default task --- 
