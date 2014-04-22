@@ -69,11 +69,10 @@ gulp.task('templates', function() {
     .pipe(swig({
       defaults: { 
           cache: false,
-          locals: { now: function () { return new Date(); } }
+          locals: require('./dev/data/data.json')
       },
       load_json: true,
       json_path: './dev/data',
-      data: require('./dev/data/data.json'),
       setup: function(swig){ marked.useTag(swig, 'markdown'); }
     }))
     .on('error', notify.onError({
