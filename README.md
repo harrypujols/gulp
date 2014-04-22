@@ -2,6 +2,10 @@ HARRY'S GULP BOILERPLATE
 ========================
 [![David Link](https://david-dm.org/harrypujols/gulp.png)](https://david-dm.org/harrypujols/gulp)
 
+## Project's Homepage
+
+http://harrypujols.github.io/gulp
+
 ## Installation
 - Install [node.js](http://nodejs.org)
 - `$ npm install -g bower`
@@ -29,7 +33,3 @@ I am using [npm-check-updates](https://www.npmjs.org/package/npm-check-updates)
 
 - `npm-check-updates -u`
 - `npm install`
-
-### Project's Homepage
-
-http://harrypujols.github.io/gulp
