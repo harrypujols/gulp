@@ -403,6 +403,7 @@ h1 {
   text-align: center;
 }
 
-.date {
-  text-align: center;
+.container {
+  max-width: 780px;
+  margin: 0 auto;
 }

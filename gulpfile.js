@@ -4,6 +4,7 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     coffee      = require('gulp-coffee'),
     swig        = require('gulp-swig'),
+    marked      = require('swig-marked'),
     concat      = require('gulp-concat'),
     uglify      = require('gulp-uglify'),
     plumber     = require('gulp-plumber'),
@@ -71,7 +72,8 @@ gulp.task('templates', function() {
       },
       load_json: true,
       json_path: './dev/data',
-      data: require('./dev/data/data.json')
+      data: require('./dev/data/data.json'),
+      setup: function(swig){ marked.useTag(swig, 'markdown'); }
     }))
     .on('error', notify.onError({
       title: 'Fail',

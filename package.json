@@ -15,6 +15,7 @@
     "gulp-swig": "^0.5.2",
     "gulp-concat": "^2.2.0",
     "gulp-connect": "^2.0.5",
-    "gulp-open": "^0.2.8"
+    "gulp-open": "^0.2.8",
+    "swig-marked": "0.0.1"
   }
 }

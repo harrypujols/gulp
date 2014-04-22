@@ -1,4 +1,7 @@
 {% include "partials/_header.html" %}
     <h1>{{page.message}}</h1>
-    <p class="date">Created on  {{ now()|date('F jS, Y') }}</p>
+    <div class="container">
+    {% markdown %}{% include "partials/hello.md" %}{% endmarkdown %}
+    <p>Created on  {{ now()|date('F jS, Y') }}</p>
+    </div>
 {% include "partials/_footer.html" %}
