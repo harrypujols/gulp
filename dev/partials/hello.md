@@ -22,9 +22,21 @@ A not-so opinionated static site generator.
 - [Node.js](http://nodejs.org) because you can't run Gulp.js without it.
 
 ## How to use and configure
+### to run it
+```bash
+npm install
+```
+```bash
+npm gulp
+```
+Use files in the `dev` folder.
 
 ### to deploy
 - Create a repo subtree, using `git subtree push --prefix build origin gh-pages`
 - Configure the [gulp-gh-pages](https://github.com/rowoot/gulp-gh-pages) plugin in the gulpfile to point to the repo.
 - Use the task `gulp deploy`. It will send the contents of the build folder to Githbu pages.
 - The URL of the project will be at `username.github.io/repo`.
+
+## Where to get it
+- [Repository](https://github.com/harrypujols/gulp)
+- [Download](https://github.com/harrypujols/gulp/releases)
