@@ -9,8 +9,6 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
-    _if         = require('gulp-if'),
-    isWindows   = /^win/.test(require('os').platform()),
     connect     = require('gulp-connect'),
     open        = require('gulp-open'),
     port        = 1337,
@@ -35,10 +33,10 @@ gulp.task('compass', function() {
 		})
         .pipe(gulp.dest('./build/css'))
         .pipe(connect.reload())
-        .pipe(_if(!isWindows, notify({
+        .pipe(notify({
           title: 'Sucess',
           message: 'Compass compiled'
-        })))
+        }))
 });
 
 // --- Scripts ---
@@ -47,10 +45,10 @@ gulp.task('js', function() {
     .pipe(coffee({bare: true}).on('error', gutil.log))
     .pipe(gulp.dest('./build/js'))
     .pipe(connect.reload())
-    .pipe(_if(!isWindows, notify({
+    .pipe(notify({
       title: 'Sucess',
       message: 'Coffeescript compiled'
-    })))
+    }))
 });
 
 // --- Vendor ---
@@ -84,10 +82,10 @@ gulp.task('templates', function() {
     })
     .pipe(gulp.dest('./build'))
     .pipe(connect.reload())
-    .pipe(_if(!isWindows, notify({
+    .pipe(notify({
       title: 'Sucess',
       message: 'Templates compiled'
-    })))
+    }))
 });
 
 // --- Watch --- 
