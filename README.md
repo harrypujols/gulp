@@ -1,10 +1,7 @@
-HARRY'S GULP BOILERPLATE
-========================
+[GULP WORFLOW](http://harrypujols.github.io/gulp)
+==============
+
 [![David Link](https://david-dm.org/harrypujols/gulp.png)](https://david-dm.org/harrypujols/gulp)
-
-## Project's Homepage
-
-http://harrypujols.github.io/gulp
 
 ## Installation
 - Install [node.js](http://nodejs.org)
