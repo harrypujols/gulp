@@ -113,10 +113,7 @@ gulp.task('open', function(){
 // --- Deploy ---
 gulp.task('deploy', function () {
     gulp.src('./build/**/*')
-        .pipe(deploy({
-          remoteUrl: 'https://github.com/harrypujols/gulp', 
-          origin: 'origin'
-        }));
+        .pipe(deploy());
 });
  
 // --- Default task --- 
