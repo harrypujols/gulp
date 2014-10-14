@@ -42,7 +42,7 @@ gulp.task('compass', function() {
 // --- Scripts ---
 gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
-    .pipe(coffee({bare: true}).on('error', gutil.log))
+    .pipe(coffee().on('error', gutil.log))
     .pipe(gulp.dest('./build/js'))
     .pipe(connect.reload())
     .pipe(notify({
