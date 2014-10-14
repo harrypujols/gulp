@@ -55,7 +55,7 @@ gulp.task('js', function() {
 gulp.task('vendor', function() {
   gulp.src('./dev/scripts/*.js')
     .pipe(uglify())
-    .pipe(concat('vendor.js'))
+    .pipe(concat('scripts.js'))
     .pipe(gulp.dest('./build/js'))
     .pipe(connect.reload())
 });
