@@ -9,11 +9,9 @@ var gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
-    connect     = require('gulp-connect'),
-    open        = require('gulp-open'),
-    port        = 1337,
+    browsersync = require('browser-sync').create(),
     deploy      = require('gulp-gh-pages');
- 
+
 // --- Compass ---
 gulp.task('compass', function() {
     gulp.src('./dev/styles/*.scss')
@@ -32,7 +30,6 @@ gulp.task('compass', function() {
 			return console.log(err);
 		})
         .pipe(gulp.dest('./build/css'))
-        .pipe(connect.reload())
         .pipe(notify({
           title: 'Sucess',
           message: 'Compass compiled'
@@ -44,7 +41,6 @@ gulp.task('js', function() {
   return gulp.src('./dev/scripts/*.coffee')
     .pipe(coffee().on('error', gutil.log))
     .pipe(gulp.dest('./build/js'))
-    .pipe(connect.reload())
     .pipe(notify({
       title: 'Sucess',
       message: 'Coffeescript compiled'
@@ -57,15 +53,14 @@ gulp.task('vendor', function() {
     .pipe(uglify())
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest('./build/js'))
-    .pipe(connect.reload())
 });
 
-// --- Templates --- 
+// --- Templates ---
 gulp.task('templates', function() {
   gulp.src('./dev/*.html')
     .pipe(plumber())
     .pipe(swig({
-      defaults: { 
+      defaults: {
           cache: false,
           locals: require('./dev/data/data.json')
       },
@@ -81,14 +76,13 @@ gulp.task('templates', function() {
       return console.log(err);
     })
     .pipe(gulp.dest('./build'))
-    .pipe(connect.reload())
     .pipe(notify({
       title: 'Sucess',
       message: 'Templates compiled'
     }))
 });
 
-// --- Watch --- 
+// --- Watch ---
 gulp.task('watch', function() {
     gulp.watch(['./dev/*.html', './dev/**/*.html', './dev/data/*', './dev/partials/*'],['templates']);
     gulp.watch('./dev/styles/*.scss',['compass']);
@@ -97,17 +91,11 @@ gulp.task('watch', function() {
 
 // --- Server ---
 gulp.task('server', function() {
-  connect.server({
-    root: './build',
-    port: port,
-    livereload: true
+  browsersync.init({
+    server: {
+      baseDir: './build'
+    }
   });
-});
-
-// --- Open ---
-gulp.task('open', function(){
-  return gulp.src('./build/index.html')
-      .pipe(open('', {url:'http://localhost:' + port/*,  app: 'Google Chrome' */}));
 });
 
 // --- Deploy ---
@@ -115,6 +103,6 @@ gulp.task('deploy', function () {
     gulp.src('./build/**/*')
         .pipe(deploy());
 });
- 
-// --- Default task --- 
-gulp.task('default', ['js','vendor','compass','templates','watch','server', 'open']);
+
+// --- Default task ---
+gulp.task('default', ['js','vendor','compass','templates','watch','server']);
