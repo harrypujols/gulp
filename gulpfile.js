@@ -100,8 +100,8 @@ gulp.task('server', function() {
 
 // --- Deploy ---
 gulp.task('deploy', function () {
-    gulp.src('./build/**/*')
-        .pipe(deploy());
+  return gulp.src('./build/**/*')
+    .pipe(deploy());
 });
 
 // --- Default task ---
