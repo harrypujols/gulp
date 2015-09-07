@@ -66,7 +66,10 @@ gulp.task('templates', function() {
       },
       load_json: true,
       json_path: './dev/data',
-      setup: function(swig){ marked.useTag(swig, 'markdown'); }
+      setup: function(swig){
+        marked.useTag(swig, 'markdown');
+        loader: swig.loaders.fs('./dev/templates');
+      }
     }))
     .on('error', notify.onError({
       title: 'Fail',
