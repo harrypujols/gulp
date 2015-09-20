@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Gulp recipe",
   "devDependencies": {
-    "browser-sync": "^2.9.1",
+    "browser-sync": "^2.9.3",
     "gulp": "3.9.0",
     "gulp-coffee": "^2.3.1",
     "gulp-compass": "^2.1.0",
@@ -12,7 +12,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-swig": "^0.7.4",
-    "gulp-uglify": "^1.4.0",
+    "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
     "swig-marked": "0.0.1"
   }

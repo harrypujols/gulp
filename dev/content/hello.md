@@ -34,7 +34,7 @@ Use files in the `dev` folder.
 ### to deploy
 - Create a repo subtree, using `git subtree push --prefix build origin gh-pages`
 - Configure the [gulp-gh-pages](https://github.com/rowoot/gulp-gh-pages) plugin in the gulpfile to point to the repo.
-- Use the task `gulp deploy`. It will send the contents of the build folder to Githbu pages.
+- Use the task `gulp deploy`. It will send the contents of the build folder to Github pages.
 - The URL of the project will be at `username.github.io/repo`.
 
 ## Where to get it
