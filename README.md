@@ -1,7 +1,7 @@
 [GULP WORFLOW](http://harrypujols.github.io/gulp)
 ==============
 
-[![David Link](https://david-dm.org/harrypujols/gulp.png)](https://david-dm.org/harrypujols/gulp)
+[![devDependency Status](https://david-dm.org/harrypujols/gulp/dev-status.svg)](https://david-dm.org/harrypujols/gulp#info=devDependencies)
 
 ## Installation
 - Install [node.js](http://nodejs.org)
